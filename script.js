@@ -331,14 +331,11 @@ submitBtn.addEventListener('click', () => {
                             typeWriter("Happy Birthday, My Love 🎂❤️", textDisplay, () => {
                                 // Show slideshow placeholder
                                 slideshow.innerHTML = `
-                                    <img src="Image 1.jpeg" alt="Memory 1" style="max-width: 200px; margin: 10px;">
-                                    <img src="Image 2.jpeg" alt="Memory 2" style="max-width: 200px; margin: 10px;">
-                                    <img src="Image 3.jpeg" alt="Memory 3" style="max-width: 200px; margin: 10px;">
-                                    <img src="Image 4.jpeg" alt="Memory 4" style="max-width: 200px; margin: 10px;">
-                                    <img src="Image 5.jpeg" alt="Memory 5" style="max-width: 200px; margin: 10px;">
+                                    <img id="slideshow-image" src="Image 1.jpeg" alt="Memory 1" style="max-width: 300px; margin: 10px;">
                                     <div>Final Message: I love you forever ❤️</div>
                                 `;
                                 slideshow.style.display = 'block';
+                                startSlideshow();
                             });
                         }, 2000);
                     });
@@ -367,3 +364,15 @@ submitBtn.addEventListener('click', () => {
 
 // Start on load
 window.onload = startJourney;
+
+function startSlideshow() {
+    const images = ["Image 1.jpeg", "Image 2.jpeg", "Image 3.jpeg", "Image 4.jpeg", "Image 5.jpeg"];
+    let index = 0;
+    const slideshowImage = document.getElementById('slideshow-image');
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        slideshowImage.src = images[index];
+        slideshowImage.alt = `Memory ${index + 1}`;
+    }, 3000); // Change every 3 seconds
+}
